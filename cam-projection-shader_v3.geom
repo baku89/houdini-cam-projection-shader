@@ -13,9 +13,12 @@ in parms
     vec4  color;
     vec2  texcoord0;
     float selected;
-		vec3  campos;
-		float cam_zoom;
-		float cam_aspect;
+    
+    //------Start camera projection
+    vec3  campos;
+    float cam_zoom;
+    float cam_aspect;
+    //------End camera projection
 } gsIn[];
 
 out wparms {
@@ -26,9 +29,12 @@ out wparms {
     noperspective out vec3 edgedist;
     flat out int edgeflags;
     float selected;
-		vec3  campos;
-		float cam_zoom;
-		float cam_aspect;
+
+    //------Start camera projection
+    vec3  campos;
+    float cam_zoom;
+    float cam_aspect;
+    //------End camera projection
 } gsOut;
 
 #if defined(VENDOR_NVIDIA) && DRIVER_MAJOR >= 343
@@ -238,9 +244,13 @@ void main()
         gsOut.texcoord0 = texelFetch(attruv, vertex.r).rg;
         
     gsOut.pos       = gsIn[0].pos;
+
+    //------Start camera projection
     gsOut.campos  = gsIn[0].campos;
     gsOut.cam_zoom  = gsIn[0].cam_zoom;
     gsOut.cam_aspect  = gsIn[0].cam_aspect;
+    //------End camera projection
+
     gsOut.selected  = prim_selected ? 1.0 : gsIn[0].selected;
     gsOut.edgedist  = vec3(dist.x, 0.0, 0.0);
     gsOut.edgeflags = edgeflags;
@@ -273,9 +283,13 @@ void main()
         
     gsOut.selected  = prim_selected ? 1.0 : gsIn[1].selected;
     gsOut.pos       = gsIn[1].pos;
+
+    //------Start camera projection
     gsOut.campos  = gsIn[1].campos;
     gsOut.cam_zoom  = gsIn[1].cam_zoom;
     gsOut.cam_aspect  = gsIn[1].cam_aspect;
+    //------End camera projection
+
     gsOut.edgedist  = vec3(0.0, dist.y, 0.0);
     gsOut.edgeflags = edgeflags;
     gl_Position     = gl_in[1].gl_Position;
@@ -308,9 +322,13 @@ void main()
     
     gsOut.selected  = prim_selected ? 1.0 : gsIn[2].selected;
     gsOut.pos       = gsIn[2].pos;
+
+    //------Start camera projection
     gsOut.campos  = gsIn[2].campos;
     gsOut.cam_zoom = gsIn[2].cam_zoom;
-    gsOut.cam_aspect = gsIn[2].cam_aspect;
+    gsOut.cam_aspect = gsIn[2].cam_aspect
+    //------End camera projection
+    ;
     gsOut.edgedist  = vec3(0.0, 0.0, dist.z);
     gsOut.edgeflags = edgeflags;
     gl_Position     = gl_in[2].gl_Position;

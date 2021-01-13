@@ -11,12 +11,16 @@ layout(location=2) in float Alpha;
 layout(location=3) in vec3 N;
 layout(location=4) in vec2 uv;
 layout(location=6) in uint pointSelection;
+
+//------Start camera projection
 layout(location=9) in vec3 rest;
 layout(location=10) in float cam_zoom;
 layout(location=11) in float cam_aspect;
 layout(location=12) in vec3 cam_axisy;
 layout(location=13) in vec3 cam_axisz;
 layout(location=14) in vec3 cam_trans;
+//------End camera projection
+
 #else
 in vec3 P;
 in vec3 Cd;
@@ -24,12 +28,15 @@ in float Alpha;
 in vec3 N;
 in vec2 uv;
 in uint pointSelection;
+
+//------Start camera projection
 in vec3 rest;
 in float cam_zoom;
 in float cam_aspect;
 in vec3 cam_axisy;
 in vec3 cam_axisz;
 in vec3 cam_trans;
+//------End camera projection
 #endif
 
 layout(std140) uniform glH_Material
@@ -145,9 +152,12 @@ out parms
     vec4  color;
     vec2  texcoord0;
     float selected;
+
+    //------Start camera projection
     vec3 campos;
     float cam_zoom;
     float cam_aspect;
+    //------End camera projection
 } vsOut;
 
 #if defined(VENDOR_NVIDIA) && DRIVER_MAJOR >= 343

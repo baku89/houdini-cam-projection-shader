@@ -12,9 +12,12 @@ in wparms
     noperspective in vec3 edgedist;
     flat in int edgeflags;
     float selected;
+		
+    //------Start camera projection
     vec3 campos;
     float cam_zoom;
     float cam_aspect;
+    //------End camera projection
 } fsIn;
 
 layout(std140) uniform glH_Material
