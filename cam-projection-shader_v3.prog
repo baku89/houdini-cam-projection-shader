@@ -1,0 +1,14 @@
+#name Camera Projection Shader v3
+
+#version 330
+#hou_attrib_map
+#input rest 9
+#input cam_zoom 10
+#input cam_aspect 11
+#input cam_axisy 12
+#input cam_axisz 13
+#input cam_trans 14
+
+cam-projection-shader_v3.vert
+cam-projection-shader_v3.frag
+cam-projection-shader_v3.geom
